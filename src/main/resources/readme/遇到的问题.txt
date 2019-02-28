@@ -1,0 +1,9 @@
+2019.02.21
+1. 
+vue 引入bootstrap.css, 出现异常: Can't resolve '../fonts/glyphicons-halflings-regular.eot'
+参考:
+https://blog.csdn.net/guorui_cara/article/details/78616281
+https://www.cnblogs.com/shengnan-2017/p/8094134.html
+https://blog.csdn.net/wild46cat/article/details/77662555
+
+2019.02.22解决此问题

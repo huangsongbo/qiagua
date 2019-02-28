@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amu.qiagua.dao.BaseStoreMapper">
+  <resultMap id="BaseResultMap" type="com.amu.qiagua.model.dobj.BaseStoreDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="area_long_id" jdbcType="VARCHAR" property="areaLongId" />
+    <result column="store_pic_ids" jdbcType="VARCHAR" property="storePicIds" />
+    <result column="store_address_info" jdbcType="VARCHAR" property="storeAddressInfo" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, store_name, area_long_id, store_pic_ids, store_address_info, remark, is_deleted, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_store
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from base_store
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.amu.qiagua.model.dobj.BaseStoreDO" useGeneratedKeys="true">
+    insert into base_store (store_name, area_long_id, store_pic_ids, 
+      store_address_info, remark, is_deleted, 
+      create_time)
+    values (#{storeName,jdbcType=VARCHAR}, #{areaLongId,jdbcType=VARCHAR}, #{storePicIds,jdbcType=VARCHAR}, 
+      #{storeAddressInfo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.amu.qiagua.model.dobj.BaseStoreDO" useGeneratedKeys="true">
+    insert into base_store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="areaLongId != null">
+        area_long_id,
+      </if>
+      <if test="storePicIds != null">
+        store_pic_ids,
+      </if>
+      <if test="storeAddressInfo != null">
+        store_address_info,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLongId != null">
+        #{areaLongId,jdbcType=VARCHAR},
+      </if>
+      <if test="storePicIds != null">
+        #{storePicIds,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressInfo != null">
+        #{storeAddressInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.amu.qiagua.model.dobj.BaseStoreDO">
+    update base_store
+    <set>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLongId != null">
+        area_long_id = #{areaLongId,jdbcType=VARCHAR},
+      </if>
+      <if test="storePicIds != null">
+        store_pic_ids = #{storePicIds,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressInfo != null">
+        store_address_info = #{storeAddressInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.amu.qiagua.model.dobj.BaseStoreDO">
+    update base_store
+    set store_name = #{storeName,jdbcType=VARCHAR},
+      area_long_id = #{areaLongId,jdbcType=VARCHAR},
+      store_pic_ids = #{storePicIds,jdbcType=VARCHAR},
+      store_address_info = #{storeAddressInfo,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

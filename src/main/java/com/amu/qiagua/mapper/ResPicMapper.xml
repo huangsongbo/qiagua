@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amu.qiagua.dao.ResPicMapper">
+
+	<resultMap id="BaseResultMap" type="com.amu.qiagua.model.dobj.ResPicDO">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="file_path" jdbcType="VARCHAR" property="filePath" />
+		<result column="file_key" jdbcType="VARCHAR" property="fileKey" />
+		<result column="file_size" jdbcType="INTEGER" property="fileSize" />
+		<result column="pic_length" jdbcType="INTEGER" property="picLength" />
+		<result column="pic_weight" jdbcType="INTEGER" property="picWeight" />
+		<result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, file_path, file_key, file_size, pic_length, pic_weight, is_deleted, create_time
+	</sql>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from res_pic
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from res_pic
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	
+	<insert id="insert" parameterType="com.amu.qiagua.model.dobj.ResPicDO">
+		insert into res_pic (id, file_path, file_key,
+		file_size, pic_length, pic_weight,
+		is_deleted, create_time)
+		values (#{id,jdbcType=BIGINT}, #{filePath,jdbcType=VARCHAR}, #{fileKey,jdbcType=VARCHAR},
+		#{fileSize,jdbcType=INTEGER}, #{picLength,jdbcType=INTEGER}, #{picWeight,jdbcType=INTEGER},
+		#{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<insert id="insertSelective" parameterType="com.amu.qiagua.model.dobj.ResPicDO">
+		insert into res_pic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="filePath != null">
+				file_path,
+			</if>
+			<if test="fileKey != null">
+				file_key,
+			</if>
+			<if test="fileSize != null">
+				file_size,
+			</if>
+			<if test="picLength != null">
+				pic_length,
+			</if>
+			<if test="picWeight != null">
+				pic_weight,
+			</if>
+			<if test="isDeleted != null">
+				is_deleted,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="filePath != null">
+				#{filePath,jdbcType=VARCHAR},
+			</if>
+			<if test="fileKey != null">
+				#{fileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="fileSize != null">
+				#{fileSize,jdbcType=INTEGER},
+			</if>
+			<if test="picLength != null">
+				#{picLength,jdbcType=INTEGER},
+			</if>
+			<if test="picWeight != null">
+				#{picWeight,jdbcType=INTEGER},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.amu.qiagua.model.dobj.ResPicDO">
+		update res_pic
+		<set>
+			<if test="filePath != null">
+				file_path = #{filePath,jdbcType=VARCHAR},
+			</if>
+			<if test="fileKey != null">
+				file_key = #{fileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="fileSize != null">
+				file_size = #{fileSize,jdbcType=INTEGER},
+			</if>
+			<if test="picLength != null">
+				pic_length = #{picLength,jdbcType=INTEGER},
+			</if>
+			<if test="picWeight != null">
+				pic_weight = #{picWeight,jdbcType=INTEGER},
+			</if>
+			<if test="isDeleted != null">
+				is_deleted = #{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<update id="updateByPrimaryKey" parameterType="com.amu.qiagua.model.dobj.ResPicDO">
+		update res_pic
+		set file_path = #{filePath,jdbcType=VARCHAR},
+		file_key = #{fileKey,jdbcType=VARCHAR},
+		file_size = #{fileSize,jdbcType=INTEGER},
+		pic_length = #{picLength,jdbcType=INTEGER},
+		pic_weight = #{picWeight,jdbcType=INTEGER},
+		is_deleted = #{isDeleted,jdbcType=TINYINT},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+</mapper>

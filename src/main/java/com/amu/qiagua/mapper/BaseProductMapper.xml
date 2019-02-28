@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amu.qiagua.dao.BaseProductMapper">
+  <resultMap id="BaseResultMap" type="com.amu.qiagua.model.dobj.BaseProductDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="category_long_id" jdbcType="VARCHAR" property="categoryLongId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="survive_time" jdbcType="INTEGER" property="surviveTime" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="unit_type_value" jdbcType="TINYINT" property="unitTypeValue" />
+    <result column="price_info" jdbcType="VARCHAR" property="priceInfo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_name, category_long_id, store_id, is_deleted, survive_time, price, unit_type_value, 
+    price_info, create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from base_product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.amu.qiagua.model.dobj.BaseProductDO" useGeneratedKeys="true">
+    insert into base_product (product_name, category_long_id, store_id, 
+      is_deleted, survive_time, price, 
+      unit_type_value, price_info, create_time, 
+      remark)
+    values (#{productName,jdbcType=VARCHAR}, #{categoryLongId,jdbcType=VARCHAR}, #{storeId,jdbcType=BIGINT}, 
+      #{isDeleted,jdbcType=TINYINT}, #{surviveTime,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{unitTypeValue,jdbcType=TINYINT}, #{priceInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.amu.qiagua.model.dobj.BaseProductDO" useGeneratedKeys="true">
+    insert into base_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="categoryLongId != null">
+        category_long_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="surviveTime != null">
+        survive_time,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="unitTypeValue != null">
+        unit_type_value,
+      </if>
+      <if test="priceInfo != null">
+        price_info,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryLongId != null">
+        #{categoryLongId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="surviveTime != null">
+        #{surviveTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="unitTypeValue != null">
+        #{unitTypeValue,jdbcType=TINYINT},
+      </if>
+      <if test="priceInfo != null">
+        #{priceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.amu.qiagua.model.dobj.BaseProductDO">
+    update base_product
+    <set>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryLongId != null">
+        category_long_id = #{categoryLongId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="surviveTime != null">
+        survive_time = #{surviveTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="unitTypeValue != null">
+        unit_type_value = #{unitTypeValue,jdbcType=TINYINT},
+      </if>
+      <if test="priceInfo != null">
+        price_info = #{priceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.amu.qiagua.model.dobj.BaseProductDO">
+    update base_product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      category_long_id = #{categoryLongId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      survive_time = #{surviveTime,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      unit_type_value = #{unitTypeValue,jdbcType=TINYINT},
+      price_info = #{priceInfo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,25 @@
+2019.02.09
+1. 创建项目
+2. 建立base_area, base_store, base_category, base_product, res_pic, base_user模块
+3. 造数据
+4. 修改部分不合理的字段
+
+2019.02.14
+1.修改自动生成的代码
+2.create 管理台页面(baseCategory)
+
+2019.02.17
+1.学习create vue project
+
+2019.02.20
+1.create vue project
+
+2019.02.21
+1.vue 引入jquery + bootstrap
+遇到问题: Can't resolve '../fonts/glyphicons-halflings-regular.eot'
+见:
+https://blog.csdn.net/guorui_cara/article/details/78616281
+
+2019.02.23
+1.前端项目添加bootstrap失败, 不知道动了哪个配置一直启动不了了, 
+准备重建项目再研究添加bootstrap, 并且用git管理, 以免又不小心动了什么配置

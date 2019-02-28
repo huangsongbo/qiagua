@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amu.qiagua.dao.BaseCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.amu.qiagua.model.dobj.BaseCategoryDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="category_long_id" jdbcType="VARCHAR" property="categoryLongId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_pic_id" jdbcType="BIGINT" property="categoryPicId" />
+    <result column="click_rate" jdbcType="INTEGER" property="clickRate" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pid, category_long_id, category_name, category_pic_id, click_rate, is_deleted, 
+    create_time, `level`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from base_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.amu.qiagua.model.dobj.BaseCategoryDO" useGeneratedKeys="true">
+    insert into base_category (pid, category_long_id, category_name, 
+      category_pic_id, click_rate, is_deleted, 
+      create_time, `level`)
+    values (#{pid,jdbcType=BIGINT}, #{categoryLongId,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, 
+      #{categoryPicId,jdbcType=BIGINT}, #{clickRate,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{level,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.amu.qiagua.model.dobj.BaseCategoryDO" useGeneratedKeys="true">
+    insert into base_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="categoryLongId != null">
+        category_long_id,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="categoryPicId != null">
+        category_pic_id,
+      </if>
+      <if test="clickRate != null">
+        click_rate,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="categoryLongId != null">
+        #{categoryLongId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryPicId != null">
+        #{categoryPicId,jdbcType=BIGINT},
+      </if>
+      <if test="clickRate != null">
+        #{clickRate,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.amu.qiagua.model.dobj.BaseCategoryDO">
+    update base_category
+    <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="categoryLongId != null">
+        category_long_id = #{categoryLongId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryPicId != null">
+        category_pic_id = #{categoryPicId,jdbcType=BIGINT},
+      </if>
+      <if test="clickRate != null">
+        click_rate = #{clickRate,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.amu.qiagua.model.dobj.BaseCategoryDO">
+    update base_category
+    set pid = #{pid,jdbcType=BIGINT},
+      category_long_id = #{categoryLongId,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      category_pic_id = #{categoryPicId,jdbcType=BIGINT},
+      click_rate = #{clickRate,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      `level` = #{level,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

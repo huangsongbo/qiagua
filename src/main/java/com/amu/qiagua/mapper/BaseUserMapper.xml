@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amu.qiagua.dao.BaseUserMapper">
+
+	<resultMap id="BaseResultMap" type="com.amu.qiagua.model.dobj.BaseUserDO">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="user_type" jdbcType="VARCHAR" property="userType" />
+		<result column="permission_type" jdbcType="VARCHAR" property="permissionType" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="open_id" jdbcType="VARCHAR" property="openId" />
+		<result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, user_type, permission_type, username, `password`, open_id, is_deleted, create_time
+	</sql>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_user
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from base_user
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	
+	<insert id="insert" parameterType="com.amu.qiagua.model.dobj.BaseUserDO">
+		insert into base_user (id, user_type, permission_type,
+		username, `password`, open_id,
+		is_deleted, create_time)
+		values (#{id,jdbcType=BIGINT}, #{userType,jdbcType=VARCHAR}, #{permissionType,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR},
+		#{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<insert id="insertSelective" parameterType="com.amu.qiagua.model.dobj.BaseUserDO">
+		insert into base_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+			<if test="permissionType != null">
+				permission_type,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				`password`,
+			</if>
+			<if test="openId != null">
+				open_id,
+			</if>
+			<if test="isDeleted != null">
+				is_deleted,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionType != null">
+				#{permissionType,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.amu.qiagua.model.dobj.BaseUserDO">
+		update base_user
+		<set>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionType != null">
+				permission_type = #{permissionType,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				`password` = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="openId != null">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				is_deleted = #{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<update id="updateByPrimaryKey" parameterType="com.amu.qiagua.model.dobj.BaseUserDO">
+		update base_user
+		set user_type = #{userType,jdbcType=VARCHAR},
+		permission_type = #{permissionType,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		`password` = #{password,jdbcType=VARCHAR},
+		open_id = #{openId,jdbcType=VARCHAR},
+		is_deleted = #{isDeleted,jdbcType=TINYINT},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+</mapper>
